@@ -1,0 +1,53 @@
+
+.svg_banner{
+    display: block;
+      width: 100%;
+      height: 95vh;
+      overflow: hidden;
+      position: relative;
+      margin-top: 56px;
+  }
+  .svg_banner img{
+      width: 100%;
+      height: max-content;
+      position: absolute;
+  }
+  .front_banner{
+      bottom: -250px;
+      z-index: 5;
+      will-change: transform;
+      transition: transform 0.1s linear;
+  }
+  .midel_banner{
+      bottom: -150px;
+      will-change: transform;
+      transition: transform 0.1s linear;
+  }
+  
+  .back_banner{
+      bottom: -180px;
+  }
+  .logoInBanner{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 270px;
+      overflow: hidden;
+  }
+  @keyframes dancing_logo {
+      from{
+          transform: scale(0);
+      }
+      to{
+          transform: scale(1) rotateY(360deg);
+      }
+  }
+  .logoInBanner img{
+      display: block;
+      width: 480px;
+      height: max-content;
+      z-index: 4;
+      transform: scale(0);
+      animation: dancing_logo 2s ease-in-out forwards;
+  }

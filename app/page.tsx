@@ -1,69 +1,23 @@
-"use client";
-import React, {useEffect} from "react";
+import ParallaxBanner from "@/components/ParallaxBanner/ParallaxBanner";
 import ContactBtn from "@/components/contactUsBtn/ContactBtn";
+import Slideshow from "../components/lastProjectSlideshow/Slideshow";
 // ---------------------- حذف کش
 async function getData() {
     const res = await fetch("https://api.example.com/data", {cache: "no-store"}); // جلوگیری از کش
     return res.json();
 }
+const HomePage = () => {
+    const images = [
+      "/lastproject/house.webp",
+      "/lastproject/Beautiful-living-room-with-a-fireplace.jpg",
+      "/lastproject/View-through-kitchen-to-living-area.jpg",
+    ];
 
-// ----------------------
-
-const Page = () => {
-    useEffect(() => {
-        const go_up = (scroll_number: number) => {
-            const midel_banner = document.querySelector("#midel_banner");
-            const front_banner = document.querySelector("#front_banner");
-
-            if (!(midel_banner instanceof HTMLElement) || !(front_banner instanceof HTMLElement)) return;
-
-            if (scroll_number < 525) {
-                const midel = -0.1 * scroll_number;
-                const front = -0.2 * scroll_number;
-                front_banner.style.transform = `translateY(${front}px)`;
-                midel_banner.style.transform = `translateY(${midel}px)`;
-            }
-        };
-
-        const onScroll = () => {
-            const scroll_number = window.scrollY;
-            go_up(scroll_number);
-            console.log(scroll_number);
-        };
-
-        window.addEventListener("scroll", onScroll);
-
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-        };
-    }, []);
     return (
         <>
             {/* _____________________ website banner _______________________ */}
 
-            <section className="svg_banner">
-                <div className="logoInBanner">
-                    <img src="/logo/goldajorchin.svg" alt="Logo" />
-                </div>
-                <img
-                    src="/svgbanner/city_back.svg"
-                    alt="svg illustration of city for banner"
-                    className="back_banner"
-                    id="back_banner"
-                />
-                <img
-                    src="/svgbanner/city_midel.svg"
-                    alt="svg illustration of city for banner"
-                    className="midel_banner"
-                    id="midel_banner"
-                />
-                <img
-                    src="/svgbanner/city_front.svg"
-                    alt="svg illustration of city for banner"
-                    className="front_banner"
-                    id="front_banner"
-                />
-            </section>
+            <ParallaxBanner />
 
             {/* _____________________ our service _______________________ */}
 
@@ -153,7 +107,8 @@ const Page = () => {
                 </div>
                 <div className="imagePart">
                     <span></span>
-                    <img src="/lastproject/home.jpg" alt="آخرین پروژه ساخته شده" />
+                    <Slideshow images={images} interval={4000} className="lastprojectslider" />
+                    {/* <img src="/lastproject/home.jpg" alt="آخرین پروژه ساخته شده" /> */}
                 </div>
             </section>
 
@@ -358,5 +313,4 @@ const Page = () => {
         </>
     );
 };
-
-export default Page;
+export default HomePage;
