@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata = {
   title: "گروه ساختمان سازی آجرچین",
   description: "با بیش از ۳۰ سال سابقه در ساختمان سازی",
+  verification: {
+    google: "IxpzZQDbeQ8t_EJXY5c4t8C5yjtmgIpU9-YV1Q4vDQs",
+  },
 };
 
 
