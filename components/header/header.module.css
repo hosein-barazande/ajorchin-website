@@ -5,15 +5,15 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    min-height: 60px;
-    height: max-content;
+    height: 60px;
     background-image: url("/menu/blackMarbel.jpg");
     background-size: contain;
     background-repeat: repeat-x;
     padding: 0 20px;
     box-sizing: border-box;
-    position: sticky;
+    position: fixed;
     top: 0;
+    z-index: 999;
 }
 
 .contact-us a {

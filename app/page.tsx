@@ -22,6 +22,8 @@ const HomePage = () => {
             {/* _____________________ our service _______________________ */}
 
             <section className="ourService">
+            <img src="/menu/bwg_marbel.jpg" style={{position:'absolute', width:0, height:0, visibility:'hidden'}} />
+
                 <section className="ourServiceTitel">
                     <h2>خدمات ما</h2>
                     <p>

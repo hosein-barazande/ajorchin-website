@@ -4,6 +4,16 @@ import ContactBtn from '../contactUsBtn/ContactBtn';
 
 const Header = () => {
   return (
+    <>
+    <img 
+  src="/menu/blackMarbel.jpg" 
+  style={{ position: 'absolute', width: 0, height: 0, visibility: 'hidden' }} 
+/>
+<img 
+  src="/menu/whiteMarbel.jpg" 
+  style={{ position: 'absolute', width: 0, height: 0, visibility: 'hidden' }} 
+/>
+
     <div className={styles["navbar"]}>
       <div className={styles["logo"]}>
         <img
@@ -53,6 +63,7 @@ const Header = () => {
        <ContactBtn/>
       </div>
     </div>
+    </>
   );
 }
 
