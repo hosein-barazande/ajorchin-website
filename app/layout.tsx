@@ -7,7 +7,6 @@ export const metadata = {
   description: "با بیش از ۳۰ سال سابقه در ساختمان سازی",
   verification: {
     google: "IxpzZQDbeQ8t_EJXY5c4t8C5yjtmgIpU9-YV1Q4vDQs",
-    bing: "B30307234E20D7AC9B11D5C7B12168EB",
   },
 };
 
@@ -18,7 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fa">
+      <head>
+      <meta name="msvalidate.01" content="B30307234E20D7AC9B11D5C7B12168EB" />
+      </head>
       <body className="body">
         <Header />
         {children}
