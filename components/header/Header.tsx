@@ -34,7 +34,7 @@ const Header = () => {
             <div className={`${styles.face} ${styles.back}`}><p>پروژه های ما</p></div>
           </div>
         </a>
-        <a href="#" className={styles["cube-link"]}>
+        <a href="/portfolio" className={styles["cube-link"]}>
           <div className={styles["cube"]}>
             <div className={`${styles.face} ${styles.front}`}><p>نمونه کارها</p></div>
             <div className={`${styles.face} ${styles.back}`}><p>نمونه کارها</p></div>
