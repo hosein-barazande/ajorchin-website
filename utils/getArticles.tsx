@@ -1,64 +1,120 @@
-import fs from 'fs';
-import path from 'path';
+import fs from "fs";
+import path from "path";
 
-export interface Article {
-  title: string;
-  slug: string;
-  summary: string;
-  thumbnail: string;
-  content: string;
+export interface FAQItem {
+    question: string;
+    answer: string;
 }
 
-const articlesDir = path.join(process.cwd(), 'articles-html');
+export interface Article {
+    title: string;
+    slug: string;
+    description: string;
+    date: string;
+    thumbnail: string;
+    thumbnailAlt: string;
+    content: string;
+    faq: FAQItem[];
+}
 
-export function getAllArticles(): Article[] {
-  const fileNames = fs.readdirSync(articlesDir);
+const articlesDir = path.join(process.cwd(), "articles-html");
 
-  return fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.html$/, '');
+function parseArticle(fileName: string): Article {
+    const slug = fileName.replace(/\.html$/i, "");
     const filePath = path.join(articlesDir, fileName);
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const fileContent = fs.readFileSync(filePath, "utf-8");
 
-    const matchTitle = fileContent.match(/<title>(.*?)<\/title>/);
-    const title = matchTitle ? matchTitle[1] : 'عنوان نامشخص';
+    // Title
+    const matchTitle = fileContent.match(/<title>([\s\S]*?)<\/title>/i);
 
-    const matchSummary = fileContent.match(/<summary>(.*?)<\/summary>/);
-    const summary = matchSummary ? matchSummary[1] : 'خلاصه‌ای موجود نیست';
+    const title = matchTitle ? matchTitle[1].trim() : "عنوان نامشخص";
 
-    const matchThumbnail = fileContent.match(/<thumbnail>(.*?)<\/thumbnail>/);
-    const thumbnail = matchThumbnail ? matchThumbnail[1] : '/placeholder.jpg';
+    // Description
+    const matchDescription = fileContent.match(
+        /<meta\b[^>]*\bname=["']description["'][^>]*\bcontent=["']([\s\S]*?)["'][^>]*>/i
+    );
+
+    const description = matchDescription ? matchDescription[1].trim() : "توضیحات مقاله موجود نیست.";
+
+    // Date
+    const matchDate = fileContent.match(/<meta\b[^>]*\bname=["']date["'][^>]*\bcontent=["']([\s\S]*?)["'][^>]*>/i);
+
+    const date = matchDate ? matchDate[1].trim() : "";
+
+    // Thumbnail
+    const matchThumbnail = fileContent.match(/<thumbnail(?:\s+alt=["']([\s\S]*?)["'])?\s*>([\s\S]*?)<\/thumbnail>/i);
+
+    const thumbnail = matchThumbnail ? matchThumbnail[2].trim() : "/placeholder.jpg";
+
+    // اگر thumbnailAlt وجود نداشته باشد، title استفاده می‌شود
+    const thumbnailAlt = matchThumbnail?.[1]?.trim() || title;
+
+    /*
+     * فقط محتوای داخل <article> را استخراج می‌کنیم.
+     *
+     * این کار باعث می‌شود:
+     * - metadata بالای فایل نمایش داده نشود
+     * - summary قدیمی metadata نمایش داده نشود
+     * - summaryهای داخل details/FAQ باقی بمانند
+     */
+    const articleMatch = fileContent.match(/<article\b[^>]*>([\s\S]*?)<\/article>/i);
+
+    const content = articleMatch ? articleMatch[1].trim() : "";
+
+    /*
+     * استخراج FAQ از details/summary
+     */
+    const faq: FAQItem[] = [];
+
+    const detailsMatches = content.matchAll(
+        /<details\b[^>]*>[\s\S]*?<summary\b[^>]*>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/gi
+    );
+
+    for (const match of detailsMatches) {
+        const question = match[1]
+        .replace(/<[^>]+>/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+        const answer = match[2]
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+        if (question && answer) {
+            faq.push({
+                question,
+                answer,
+            });
+        }
+    }
 
     return {
-      title,
-      slug,
-      summary,
-      thumbnail,
-      content: fileContent,
+        title,
+        slug,
+        description,
+        date,
+        thumbnail,
+        thumbnailAlt,
+        content,
+        faq,
     };
-  });
+}
+
+export function getAllArticles(): Article[] {
+    const fileNames = fs.readdirSync(articlesDir).filter((fileName) => fileName.toLowerCase().endsWith(".html"));
+
+    return fileNames.map(parseArticle);
 }
 
 export function getArticleBySlug(slug: string): Article | null {
-  const filePath = path.join(articlesDir, `${slug}.html`);
+    const safeSlug = slug.replace(/\.html$/i, "");
 
-  if (!fs.existsSync(filePath)) return null;
+    const filePath = path.join(articlesDir, `${safeSlug}.html`);
 
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
+    if (!fs.existsSync(filePath)) {
+        return null;
+    }
 
-  const matchTitle = fileContent.match(/<title>(.*?)<\/title>/);
-  const title = matchTitle ? matchTitle[1] : 'عنوان نامشخص';
-
-  const matchSummary = fileContent.match(/<summary>(.*?)<\/summary>/);
-  const summary = matchSummary ? matchSummary[1] : 'خلاصه‌ای موجود نیست';
-
-  const matchThumbnail = fileContent.match(/<thumbnail>(.*?)<\/thumbnail>/);
-  const thumbnail = matchThumbnail ? matchThumbnail[1] : '/placeholder.jpg';
-
-  return {
-    title,
-    slug,
-    summary,
-    thumbnail,
-    content: fileContent,
-  };
+    return parseArticle(`${safeSlug}.html`);
 }

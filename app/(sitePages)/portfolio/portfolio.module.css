@@ -21,13 +21,14 @@
 }
 .portfolioPage .portfolioBanner .customShapeDividerBottom {
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     width: 100%;
     overflow: hidden;
     line-height: 0;
     transform: rotate(180deg);
     fill: #fff;
+    z-index: 1000;
 }
 .portfolioPage .portfolioBanner .imgPart {
     width: 50%;
@@ -136,4 +137,46 @@
 }
 .portfolioContactus .btnSection {
     margin-top: 20px;
+}
+
+/* ================================
+   Large Desktop — ≤ 1440px
+================================ */
+@media (max-width: 1440px) {
+}
+
+/* ================================
+   Desktop — ≤ 1200px
+================================ */
+@media (max-width: 1200px) {
+}
+
+/* ================================
+   Tablet — ≤ 992px
+================================ */
+@media (max-width: 992px) {
+}
+
+/* ================================
+   Tablet / Mobile — ≤ 768px
+================================ */
+@media (max-width: 768px) {
+}
+
+/* ================================
+   Large Mobile — ≤ 576px
+================================ */
+@media (max-width: 576px) {
+}
+
+/* ================================
+   Mobile — ≤ 480px
+================================ */
+@media (max-width: 480px) {
+}
+
+/* ================================
+   Small Mobile — ≤ 375px
+================================ */
+@media (max-width: 375px) {
 }

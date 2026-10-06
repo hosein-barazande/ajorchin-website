@@ -37,12 +37,6 @@
 .articleContent article {
     padding: 0 40px;
 }
-.articleContent img[alt="thumbnail"] {
-    width: 100%;
-    height: max-content;
-    position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
-}
 
 .articleContent h1 {
     font-size: 3vw;
@@ -66,15 +60,12 @@
     text-align: justify;
     padding: 10px 2vw;
 }
-.articleContent img:not([alt="thumbnail"]) {
-    width: 60vw;
-    height: max-content;
-    position: relative;
-    right: 50%;
-    transform: translate(50%);
-    border-radius: 10px;
+.articleContent h2 {
+    padding: 0 30px;
 }
-
+.articleContent ul {
+    padding: 0 60px;
+}
 /* ـــــــــــــــــــــــ blog cart page ـــــــــــــــــــــــ */
 
 .blogContainer {

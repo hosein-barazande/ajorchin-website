@@ -1,4 +1,3 @@
-
 .navbar {
     direction: rtl;
     display: flex;
@@ -55,7 +54,7 @@
     border: 2px solid;
     border-image: linear-gradient(45deg, #ffd700, #daa520, #b8860b) 1;
     box-sizing: border-box;
-    color: #FFF;
+    color: #fff;
 }
 
 .front {
@@ -69,7 +68,7 @@
     transform: rotateX(-90deg) translateZ(25px);
     color: #000;
 }
-.logo{
+.logo {
     display: inherit;
     width: 15%;
     height: max-content;
@@ -77,8 +76,147 @@
 .logo img {
     height: 60px;
 }
-.contact-us{
+.contact-us {
     display: inherit;
     width: 200px;
     height: 60px;
+}
+.one_section_on_mobile {
+    display: flex;
+}
+/* *******************************   hamberger menu  ******************************* */
+
+.hum_cube-link {
+    text-decoration: none;
+    width: 100%;
+    min-height: 60px;
+    height: max-content;
+    display: flex;
+    align-items: center;
+}
+.hum_cube {
+    width: 100%;
+    height: 59px;
+    position: relative;
+}
+.hum_menu_link_btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #ffd700, #daa520, #b8860b) 1;
+    box-sizing: border-box;
+    color: #fff;
+    background-color: #000000ac;
+}
+/* همبرگر مخفی */
+.hamburgerCheckbox {
+    display: none;
+}
+
+/* همبرگر دکمه */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    height: 3px;
+    background: linear-gradient(135deg, #ffd700, #daa520, #b8860b);
+    border-radius: 3px;
+    transition: 0.4s;
+}
+
+/* افکت ضربدری */
+.hamburgerCheckbox:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburgerCheckbox:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerCheckbox:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* منوی موبایل */
+.mobileMenu {
+    position: fixed;
+    top: 60px;
+    right: -260px;
+    width: 260px;
+    height: 100vh;
+    background-image: url("/menu/bwg_marbel.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 10px;
+    transition: right 0.4s ease;
+    z-index: 1000;
+}
+
+/* وقتی همبرگر فعال شد */
+.hamburgerCheckbox:checked ~ .mobileMenu {
+    right: 0;
+}
+
+/* ریسپانسیو */
+@media (max-width: 1070px) {
+    .menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+        justify-content: center;
+        background-color: #000000b6;
+        border-radius: 5px;
+    }
+    .one_section_on_mobile {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 50%;
+    }
+}
+@media (max-width: 675px) {
+    .one_section_on_mobile {
+        width: 60%;
+        align-items: center;
+    }
+}
+@media (max-width: 560px) {
+    .navbar {
+        flex-direction: column;
+        height: 140px;
+        background-repeat: repeat;
+    }
+    .one_section_on_mobile {
+        width: 100%;
+    }
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .logo img {
+        margin: 5px 0;
+    }
+    .contact-us {
+        margin-bottom: 5px;
+    }
+    .mobileMenu {
+        top: 140px;
+    }
 }

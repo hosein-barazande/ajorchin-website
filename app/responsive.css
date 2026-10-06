@@ -1,0 +1,111 @@
+/* ================================
+   Large Desktop — ≤ 1440px
+================================ */
+@media (max-width: 1440px) {
+}
+
+/* ================================
+   Desktop — ≤ 1200px
+================================ */
+@media (max-width: 1200px) {
+    .ourService {
+        clip-path: polygon(0 0, 100% 0, 100% 94%, 75% 100%, 0 94%);
+    }
+    .otherBtnCuboid {
+        height: 87px;
+    }
+    .PreSaleSection {
+        clip-path: polygon(0 0, 50% 6%, 100% 0, 100% 95%, 75% 100%, 0 92%);
+    }
+    .moreBtnContainer {
+        margin-top: 20px;
+    }
+    .callToUsSection .imagePart {
+        overflow: hidden;
+    }
+    .callToUsSection .imagePart img {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 79%);
+    }
+}
+
+/* ================================
+   Tablet — ≤ 992px
+================================ */
+@media (max-width: 992px) {
+    .servicecontainer {
+        padding: 90px 0;
+    }
+    .lastProjectSection .imagePart span {
+        height: 92%;
+        top: 23px;
+    }
+}
+
+/* ================================
+   Tablet / Mobile — ≤ 768px
+================================ */
+@media (max-width: 768px) {
+    .lastProjectSection {
+        display: block;
+    }
+    .lastProjectSection .textPart {
+        width: 100%;
+    }
+    .lastProjectSection .imagePart {
+        width: 100%;
+    }
+    .lastProjectSection .imagePart span {
+        display: none;
+    }
+    .ourService {
+        clip-path: polygon(0 0, 100% 0, 100% 94%, 50% 100%, 0 94%);
+    }
+    .PreSaleSection .titelPart {
+        margin-bottom: 70px;
+    }
+    .PreSaleSection {
+        clip-path: polygon(0 0, 50% 6%, 100% 0, 100% 96%, 75% 100%, 0 94%);
+    }
+    .callToUsSection .imagePart img {
+        clip-path: polygon(0 0, 100% 0, 100% 119%, 0 87%);
+    }
+}
+
+/* ================================
+   Large Mobile — ≤ 576px
+================================ */
+@media (max-width: 576px) {
+    .servicecontainer {
+        padding: 90px 0;
+    }
+    .ourService {
+        clip-path: polygon(0 0, 100% 0, 100% 97%, 50% 100%, 0 97%);
+    }
+    .PreSaleSection {
+        clip-path: polygon(0 0, 50% 2%, 100% 0, 100% 98%, 50% 100%, 0 98%);
+    }
+    .callToUsSection {
+        flex-direction: column;
+    }
+    .callToUsSection .textPart {
+        width: 100%;
+    }
+    .callToUsSection .imagePart {
+        width: 100%;
+    }
+    .callToUsSection .imagePart IMG {
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0% 80%);
+    }
+}
+
+/* ================================
+   Mobile — ≤ 480px
+================================ */
+@media (max-width: 480px) {
+}
+
+/* ================================
+   Small Mobile — ≤ 375px
+================================ */
+@media (max-width: 375px) {
+}
